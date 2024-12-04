@@ -5,4 +5,5 @@ def call() {
     def job_name = currentInfo.job_name;
     echo "${job_name}"
     echo "${env}"
+    echo "${JOB_NAME}"
 }
