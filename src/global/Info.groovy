@@ -7,5 +7,6 @@ class Info {
     Info() {
         this.env = System.getenv();
         this.job_name = "paco";
+        helloWorld("pp")
     }
 }
