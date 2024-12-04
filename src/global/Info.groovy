@@ -1,5 +1,4 @@
 package global;
-import System;
 
 class Info {
     def env;
