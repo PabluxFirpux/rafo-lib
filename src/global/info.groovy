@@ -1,5 +1,9 @@
 package global
 
 class Info {
-    public static var job_name = "${JOB_NAME}";
+    public var job_name;
+
+    public Info() {
+        this.job_name = "${JOB_NAME}";
+    }
 }
