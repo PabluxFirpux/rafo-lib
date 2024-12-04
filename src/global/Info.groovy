@@ -1,3 +1,5 @@
+package global;
+
 class Info {
     public var job_name;
 
