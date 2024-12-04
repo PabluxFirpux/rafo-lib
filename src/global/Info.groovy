@@ -4,6 +4,6 @@ class Info {
     String job_name;
 
     Info() {
-        this.job_name = "${JOB_NAME}";
+        this.job_name = env.JOB_NAME;
     }
 }
