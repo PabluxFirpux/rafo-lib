@@ -1,5 +1,5 @@
-package global.Info
+package global
 
 class Info {
-    String job_name = ${JOB_NAME};
+    public static var job_name = "${JOB_NAME}";
 }
