@@ -1,5 +1,5 @@
 package global
 
-class info {
+class Info {
     String job_name = ${JOB_NAME};
 }
