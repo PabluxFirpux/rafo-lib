@@ -7,4 +7,5 @@ def call() {
     echo "${env}"
     echo "${currentInfo.env}"
     echo "${JOB_NAME}"
+    echo "${currentInfo}"
 }
