@@ -1,4 +1,5 @@
 package global;
+import scripts.*;
 
 class Info {
     def env;
