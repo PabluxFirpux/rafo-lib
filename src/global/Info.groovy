@@ -6,6 +6,6 @@ class Info {
 
     Info() {
         this.env = System.getenv()
-        this.job_name = env.JOB_NAME;
+        this.job_name = env."${JOB_NAME}";
     }
 }
