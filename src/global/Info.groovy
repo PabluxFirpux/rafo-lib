@@ -5,8 +5,7 @@ class Info {
     String job_name;
 
     Info() {
-        this.env = System.getenv()
-        steps.echo "${env}"
+        this.env = System.getenv();
         this.job_name = "paco";
     }
 }
