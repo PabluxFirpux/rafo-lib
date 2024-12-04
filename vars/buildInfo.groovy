@@ -1,4 +1,4 @@
-import global.*
+import global.Info;
 
 def call() {
     Info currentInfo = new Info();
