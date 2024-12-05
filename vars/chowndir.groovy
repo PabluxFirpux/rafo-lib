@@ -1,7 +1,7 @@
-def chowndir(def user, def path) {
+def call(def user, def path) {
     sh "chown -R ${user} ${path}"
 }
-
+/*
 def chowndir(def user, def path, boolean recursive) {
     if (recursive) {
         chowndir(user, path);
@@ -9,3 +9,4 @@ def chowndir(def user, def path, boolean recursive) {
         sh "chown ${user} ${path}"
     }
 }
+*/
