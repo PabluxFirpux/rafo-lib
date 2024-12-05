@@ -10,7 +10,7 @@ class PermisionsModifier {
         def part1 = parts[0]
         parts = parts[1].split(sectionTail)
         def part2 = parts[1]
-        return part1 + sectionHead + strat + PermisionLineGenerator.getJobBuild(user) + PermisionLineGenerator.getJobRead(user) + sectionTail + part2;
+        return part1 + sectionHead + strat + PermisionLineGenerator.getJobBuild(user) + PermisionLineGenerator.getJobRead(user) + sectionTail + part2 + "\n";
     }
 
 
