@@ -5,7 +5,7 @@ def call() {
     def file = new File("${JENKINS_HOME}/permisions/out.xml")
     def fileContent = file.getText()
     def parts = splitConfig(fileContent)
-    println(parts)
+    println(parts[0])
 }
 
 
