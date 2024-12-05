@@ -8,7 +8,8 @@ def call() {
     def fileContent = file.getText()
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
     sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
-    sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H \"Jenkins-Crumb: ${getCrumb()}\""
+    def crumb = getCrumb();
+    sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H 'Jenkins-Crumb: ${crumb}'"
 }
 
 def getCrumb() {
