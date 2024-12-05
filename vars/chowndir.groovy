@@ -3,5 +3,9 @@ def chowndir(String user, String path) {
 }
 
 def chowndir(String user, String path, boolean recursive) {
-    recursive ? chowndir(user, path) : sh "chown ${user} ${path}"
+    if (recursive) {
+        chowndir(user, path);
+    } else {
+        sh "chown ${user} ${path}"
+    }
 }
