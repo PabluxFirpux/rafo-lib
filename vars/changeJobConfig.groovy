@@ -9,7 +9,7 @@ def call() {
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
     sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
     def crumb = getCrumb();
-    sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H 'Jenkins-Crumb: ${crumb}'"
+    sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H '.Jenkins-Crumb: ${crumb}'"
 }
 
 def getCrumb() {
