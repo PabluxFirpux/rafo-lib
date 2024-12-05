@@ -3,7 +3,9 @@ import security.*
 def call() {
     sh "mkdir -p ${JENKINS_HOME}/permisions"
     sh "touch  ${JENKINS_HOME}/permisions/out.xml"
+    sh "touch  ${JENKINS_HOME}/permisions/crumb.txt"
     sh "curl -o ${JENKINS_HOME}/permisions/out.xml -X GET -u admin:admin http://localhost:8080/job/mec/config.xml"
+    sh "curl -o ${JENKINS_HOME}/permisions/crumb.txt -X GET -u admin:admin http://localhost:8080/crumbIssuer/api/xml"
     def file = new File("${JENKINS_HOME}/permisions/out.xml")
     def fileContent = file.getText()
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
