@@ -6,6 +6,7 @@ def call() {
     sh "curl -o ${JENKINS_HOME}/permisions/out.xml -X GET -u admin:admin http://localhost:8080/job/mec/config.xml"
     def file = new File("${JENKINS_HOME}/permisions/out.xml")
     def fileContent = file.getText()
+    println(fileContent)
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
     println(result)
 }
