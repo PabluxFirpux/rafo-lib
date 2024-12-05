@@ -12,7 +12,7 @@ def call() {
     sh "rm -rf ${JENKINS_HOME}/permisions/out.xml"
     sh "touch  ${JENKINS_HOME}/permisions/out.xml"
     sh "echo ${result} > ${JENKINS_HOME}/permisions/out.xml"
-    sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\""
+   // sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\""
 }
 
 
