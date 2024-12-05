@@ -1,8 +1,8 @@
-def chowndir(String user, String path) {
+def chowndir(def user, def path) {
     sh "chown -R ${user} ${path}"
 }
 
-def chowndir(String user, String path, boolean recursive) {
+def chowndir(def user, def path, boolean recursive) {
     if (recursive) {
         chowndir(user, path);
     } else {
