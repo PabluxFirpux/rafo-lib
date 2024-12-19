@@ -10,9 +10,10 @@ class PermisionsModifier {
     static def addPermission(String file, String user) {
         def keep = file.split('<actions/>');
         def parts = keep[1].split(sectionHead);
-        def part1 = parts[0]
-        parts = parts[1].split(sectionTail)
-        def part2 = parts[1]
+        def part1 = parts[0];
+        parts = parts[1].split(sectionTail);
+        def scmQuotes = parts[1].split('<scm class=hudson.scm.NullSCM/>');
+        def part2 = scmQuotes[0] + '<scm class=\\"hudson.scm.NullSCM\\""/>' + scmQuotes[1];
         return header + part1 + sectionHead + strat + PermisionLineGenerator.getJobBuild(user) + PermisionLineGenerator.getJobRead(user) + "    " + sectionTail + part2 + "\n";
     }
 
