@@ -13,7 +13,7 @@ def call() {
     sh "sed '1s/^\\(.\\{14\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
     sh "sed '1s/^\\(.\\{18\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
     sh "sed '1s/^\\(.\\{29\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
-    sh "sed '1s/^\\(.\\{34\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+    sh "sed '1s/^\\(.\\{36\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
 
 
     sh "sed '7s/^\\(.\\{33\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
