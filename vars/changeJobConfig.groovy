@@ -13,8 +13,8 @@ def call() {
     sh "sed '8s/^\\(.\\{33\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
     sh "sed '8s/^\\(.\\{100\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
 
-    sh "sed '13s/^\\(.\\{14\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
-    sh "sed '13s/^\\(.\\{33\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+    sh "sed '13s/^\\(.\\{13\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+    sh "sed '13s/^\\(.\\{32\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
 
     def crumb = getCrumb();
     sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H 'Jenkins-Crumb: ${crumb}'"
