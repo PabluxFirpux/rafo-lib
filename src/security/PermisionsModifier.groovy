@@ -2,7 +2,7 @@ package security;
 
 class PermisionsModifier {
     private static final String sectionHead = "<hudson.security.AuthorizationMatrixProperty>\n";
-    private static final String strat = "      <inheritanceStrategy class=\"org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy\"/>\n"
+    private static final String strat = '      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>\n'
     private static final String sectionTail = "</hudson.security.AuthorizationMatrixProperty>\n";
 
     static def addPermission(String file, String user) {
