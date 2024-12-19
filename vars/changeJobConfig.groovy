@@ -10,6 +10,10 @@ def call() {
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
     sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
 
+    sh "sed '1s/^\\(.\\{15\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+    sh "sed '1s/^\\(.\\{19\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+
+
     sh "sed '8s/^\\(.\\{33\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
     sh "sed '8s/^\\(.\\{100\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
 
