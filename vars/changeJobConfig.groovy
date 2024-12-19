@@ -10,8 +10,8 @@ def call() {
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
     sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
 
-    sh "sed '8s/^\\(.\\{33\\}\\)/\\1\"/' out.xml > temp && mv temp out.xml"
-    sh "sed '8s/^\\(.\\{101\\}\\)/\\1\"/' out.xml > temp && mv temp out.xml"
+    sh "sed '8s/^\\(.\\{33\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
+    sh "sed '8s/^\\(.\\{101\\}\\)/\\1\"/' ${JENKINS_HOME}/permisions/out.xml > ${JENKINS_HOME}/permisions/temp && mv ${JENKINS_HOME}/permisions/temp ${JENKINS_HOME}/permisions/out.xml"
 
     def crumb = getCrumb();
     sh "curl -v -X POST --data-binary @${JENKINS_HOME}/permisions/out.xml -u admin:admin -H 'Content-Type: application/xml'  \"http://localhost:8080/job/mec/config.xml\" -H 'Jenkins-Crumb: ${crumb}'"
