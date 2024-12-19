@@ -9,7 +9,7 @@ class PermisionsModifier {
 
     static def addPermission(String file, String user) {
         def keep = file.split('<actions/>');
-        def parts = keep[1].split(sectionHead);
+        def parts = keep[0].split(sectionHead);
         def part1 = parts[0];
         parts = parts[1].split(sectionTail);
         def scmQuotes = parts[1].split('<scm class=hudson.scm.NullSCM/>');
