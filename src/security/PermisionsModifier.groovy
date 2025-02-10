@@ -13,7 +13,7 @@ class PermisionsModifier {
         println(project.toString())
         println("====================================================================")
 
-        return project.text();
+        return project.toString();
     }
 
     static def getPermissionNode(def root) {
