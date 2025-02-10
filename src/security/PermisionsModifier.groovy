@@ -9,12 +9,12 @@ class PermisionsModifier {
         def project = parser.parseText(text);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
-        println("====================================================================")
-        println(project.toString())
-        println("====================================================================")
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(preserveWhitespace:true)
+        StringWriter stringWriter = new StringWriter()
+        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
+        nodePrinter.setPreserveWhitespace(true)
         nodePrinter.print(project)
-        return project.toString();
+        String xmlString = stringWriter.toString()
+        return xmlString
     }
 
     static def getPermissionNode(def root) {
