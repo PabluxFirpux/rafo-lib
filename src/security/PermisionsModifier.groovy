@@ -19,7 +19,7 @@ class PermisionsModifier {
         return permissionNode;
     }
 
-    static def addPermission(Node root, String user, String permission) {
+    static def addPermission(Node root, def user, def permission) {
         def permissionNode = getPermissionNode(root)
         def newElement = new groovy.util.Node(permissionNode, 'permission')
         newElement.value = "${permission}:${user}";
