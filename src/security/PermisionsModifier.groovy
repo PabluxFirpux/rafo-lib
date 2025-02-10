@@ -9,9 +9,8 @@ class PermisionsModifier {
         def project = parser.parseText(text);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
-        def printer = XmlNodePrinter();
         println("====================================================================")
-        printer.print(project);
+        println(project.toString())
         println("====================================================================")
 
         return project.text();
