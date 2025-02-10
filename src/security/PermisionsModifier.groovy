@@ -12,7 +12,8 @@ class PermisionsModifier {
         println("====================================================================")
         println(project.toString())
         println("====================================================================")
-
+        XmlNodePrinter nodePrinter = new XmlNodePrinter(preserveWhitespace:true)
+        nodePrinter.print(project)
         return project.toString();
     }
 
