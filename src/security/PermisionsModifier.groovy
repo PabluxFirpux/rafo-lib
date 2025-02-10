@@ -13,7 +13,7 @@ class PermisionsModifier {
         return groovy.xml.XmlUtil.serialize(project)
     }
 
-    static def getPermissionNode(Node root) {
+    static def getPermissionNode(def root) {
         def parentNode = root.children().find{ it.name() == 'properties' }
         def permissionNode = parentNode.children().find{it.name() == 'hudson.security.AuthorizationMatrixProperty'}
         return permissionNode;
