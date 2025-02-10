@@ -7,4 +7,5 @@ def call() {
     Info inf = new Info();
     echo "${JOB_NAME}"
     echo "${WORKSPACE}"
+    echo "${JENKINS_URL}"
 }
