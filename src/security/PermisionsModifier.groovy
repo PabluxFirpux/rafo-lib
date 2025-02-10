@@ -1,6 +1,6 @@
 package security
 
-import groovy.xml.XmlParser;
+import groovy.xml.*;
 
 class PermisionsModifier {
 
