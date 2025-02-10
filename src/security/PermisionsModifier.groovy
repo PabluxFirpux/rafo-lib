@@ -10,7 +10,7 @@ class PermisionsModifier {
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
 
-        return project.toString();
+        return project.text();
     }
 
     static def getPermissionNode(def root) {
