@@ -7,10 +7,10 @@ def call(String user, String password, String jobName) {
 
     downloadFile(user, password, jobName, download_Path, full_File_Path);
 
-    def file = new File("${JENKINS_HOME}/permisions/out.xml")
+    def file = new File("${JENKINS_HOME}/permisions/output.xml")
     def fileContent = file.getText()
     def result = PermisionsModifier.addPermission(fileContent, "jenkins_user")
-    sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
+    sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/output.xml"
 
 
     updateConfig(user, password, full_File_Path, download_Path, jobName);
