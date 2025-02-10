@@ -5,7 +5,7 @@ def call(String user, String password, String jobName) {
     def file_Name = "output.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
 
-    def _ = downloadFile(user, password, jobName)
+    this.downloadFile(user, password, jobName);
 
     def file = new File("${JENKINS_HOME}/permisions/out.xml")
     def fileContent = file.getText()
@@ -13,7 +13,7 @@ def call(String user, String password, String jobName) {
     sh "echo \"${result}\" > ${JENKINS_HOME}/permisions/out.xml"
 
 
-    updateConfig(user, password, full_File_Path, download_Path, jobName);
+    this.updateConfig(user, password, full_File_Path, download_Path, jobName);
 }
 
 def getCrumb(String user, String password, String downloadPath) {
