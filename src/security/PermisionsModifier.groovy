@@ -10,7 +10,9 @@ class PermisionsModifier {
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
 
-        return groovy.xml.XmlUtil.serialize(project)
+        def writer = new StringWriter()
+        groovy.xml.XmlUtil.save(writer, project)
+        return writer.toString()
     }
 
     static def getPermissionNode(def root) {
