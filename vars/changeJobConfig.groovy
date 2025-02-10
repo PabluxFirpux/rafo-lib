@@ -5,7 +5,7 @@ def call(String user, String password, String jobName) {
     def file_Name = "output.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
 
-    downloadFile(user, password, jobName);
+    def _ = downloadFile(user, password, jobName)
 
     def file = new File("${JENKINS_HOME}/permisions/out.xml")
     def fileContent = file.getText()
