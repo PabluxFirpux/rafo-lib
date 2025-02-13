@@ -1,32 +1,24 @@
 package security
 
 import groovy.xml.*;
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
 
 class PermisionsModifier {
 
     static def addPermissions(String text, String user) {
-        def newText = XmlUtil.escapeXml(text)
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
-        // Convert the XML string into a DOM Document
-        def factory = DocumentBuilderFactory.newInstance()
-        factory.setNamespaceAware(true)
-        def builder = factory.newDocumentBuilder()
-        def doc = builder.parse(new ByteArrayInputStream(xmlContent.bytes))
+        StringWriter stringWriter = new StringWriter()
+        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
+        nodePrinter.setPreserveWhitespace(true)
+        nodePrinter.setExpandEmptyElements(true)
+        nodePrinter.setQuote("\"")
 
-// Use a Transformer to output the XML with correct quoting
-        def transformer = TransformerFactory.newInstance().newTransformer()
-        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes")
-        def writer = new StringWriter()
-        transformer.transform(new DOMSource(doc), new StreamResult(writer))
-
-        def outputXml = writer.toString()
-        return outputXml
+        nodePrinter.print(project)
+        String xmlString = stringWriter.toString()
+        String fixedQuotes = fixXmlQuotes(xmlString)
+        return fixedQuotes
     }
 
     static def getPermissionNode(def root) {
@@ -42,7 +34,15 @@ class PermisionsModifier {
         root.properties.add(newElement);
     }
 
-
+    def fixXmlQuotes(String xml) {
+        // Process only the parts that are XML tags (to avoid touching text nodes)
+        xml.replaceAll(/<[^>]+>/) { tag ->
+            // For each tag, replace attribute assignments that lack quotes.
+            tag.replaceAll(/(\w+)=([^\s"'>]+)/) { fullMatch, attr, value ->
+                "${attr}=\"${value}\""
+            }
+        }
+    }
 
 
 
