@@ -34,14 +34,14 @@ class PermisionsModifier {
         root.properties.add(newElement);
     }
 
-    static def fixXmlQuotes(def xml) {
-        // Process only the parts that are XML tags (to avoid touching text nodes)
-        return xml.replaceAll(/<[^>]+>/) { tag ->
-            // For each tag, replace attribute assignments that lack quotes.
-            tag.replaceAll(/(\w+)=([^\s"'>]+)/) { fullMatch, attr, value ->
-                "${attr}=\"${value}\""
-            }
-        }
+    static def fixXmlQuotes(String xml) {
+        // Match unquoted attributes (key=value where value isn't quoted)
+        def pattern = ~/(\s+\w+)=([\w\.\-\/:]+)(?=[\s>\/])/
+
+        // Replace each match with key="value"
+        return xml.replaceAll(pattern, { match, key, value ->
+            return "${key}=\"${value}\""
+        })
     }
 
 
