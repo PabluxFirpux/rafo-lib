@@ -1,7 +1,7 @@
 package security
 
 import groovy.xml.*;
-import Permissions;
+import PermissionTags;
 
 class PermisionsModifier {
 
