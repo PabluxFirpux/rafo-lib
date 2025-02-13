@@ -17,7 +17,7 @@ class PermisionsModifier {
 
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
-        String fixedQuotes = fixXmlQuotes(xmlString)
+        def fixedQuotes = fixXmlQuotes(xmlString)
         return fixedQuotes
     }
 
@@ -34,9 +34,9 @@ class PermisionsModifier {
         root.properties.add(newElement);
     }
 
-    def fixXmlQuotes(String xml) {
+    static def fixXmlQuotes(def xml) {
         // Process only the parts that are XML tags (to avoid touching text nodes)
-        xml.replaceAll(/<[^>]+>/) { tag ->
+        return xml.replaceAll(/<[^>]+>/) { tag ->
             // For each tag, replace attribute assignments that lack quotes.
             tag.replaceAll(/(\w+)=([^\s"'>]+)/) { fullMatch, attr, value ->
                 "${attr}=\"${value}\""
