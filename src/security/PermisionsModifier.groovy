@@ -1,14 +1,15 @@
 package security
 
 import groovy.xml.*;
+import security.*;
 
 class PermisionsModifier {
 
     static def addPermissions(String text, String user) {
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
-        this.addPermission(project, user, "USER:hudson.model.Item.Build")
-        this.addPermission(project, user, "USER:hudson.model.Item.Read")
+        this.addPermission(project, user, Permission.JOB_BUILD)
+        this.addPermission(project, user, Permission.JOB_READ)
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
         nodePrinter.setPreserveWhitespace(true)
@@ -26,10 +27,10 @@ class PermisionsModifier {
         return permissionNode;
     }
 
-    static def addPermission(def root, def user, def permission) {
+    static def addPermission(def root, def user, Permission permission) {
         def permissionNode = getPermissionNode(root)
         def newElement = new groovy.util.Node(permissionNode, 'permission')
-        newElement.value = "${permission}:${user}";
+        newElement.value = "${Permissions.getPermissionStringByEnum(permission)}:${user}";
         root.properties.add(newElement);
     }
 
