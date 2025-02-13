@@ -1,6 +1,8 @@
 package security
 
 import groovy.xml.*;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
 
 class PermisionsModifier {
 
@@ -10,16 +12,21 @@ class PermisionsModifier {
         def project = parser.parseText(text);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
-        // Convert the parsed Node back to a formatted XML string
+        // Convert the XML string into a DOM Document
+        def factory = DocumentBuilderFactory.newInstance()
+        factory.setNamespaceAware(true)
+        def builder = factory.newDocumentBuilder()
+        def doc = builder.parse(new ByteArrayInputStream(xmlContent.bytes))
+
+// Use a Transformer to output the XML with correct quoting
+        def transformer = TransformerFactory.newInstance().newTransformer()
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes")
         def writer = new StringWriter()
-        def printer = new XmlNodePrinter(new PrintWriter(writer))
+        transformer.transform(new DOMSource(doc), new StreamResult(writer))
 
-// Ensure attributes use double quotes
-        printer.preserveWhitespace = true
-        printer.quote = '"' // This forces double quotes
-
-        printer.print(project)
-        return writer.toString()
+        def outputXml = writer.toString()
+        return outputXml
     }
 
     static def getPermissionNode(def root) {
