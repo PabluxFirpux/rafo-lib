@@ -1,4 +1,5 @@
-import Permissions;
+import PermissionTags;
 
-println(PermisionLineGenerator.;
+PermissionTags tag = PermissionTags.JOB_BUILD;
 
+println(PermisionLineGenerator.getPermissionStringByEnum(tag))

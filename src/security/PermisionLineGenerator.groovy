@@ -1,5 +1,4 @@
-package security;
-import Permissions.PermissionTags;
+import PermissionTags;
 
 class PermisionLineGenerator {
 

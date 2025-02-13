@@ -1,4 +1,4 @@
-package security;
+
 
 public enum PermissionTags {
     CREDENTIALS_CREATE,
