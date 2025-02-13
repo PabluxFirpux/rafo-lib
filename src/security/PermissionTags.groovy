@@ -1,5 +1,3 @@
-
-
 public enum PermissionTags {
     CREDENTIALS_CREATE,
     CREDENTIALS_DELETE,

@@ -1,5 +1,3 @@
-
-
 import groovy.xml.*;
 import PermissionTags;
 
