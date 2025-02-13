@@ -11,14 +11,14 @@ class PermisionsModifier {
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
         StringWriter stringWriter = new StringWriter()
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.setExpandEmptyElements(true)
-        nodePrinter.setQuote("\"")
+        def markupBuilder = new StreamingMarkupBuilder();
 
-        nodePrinter.print(project)
-        String xmlString = stringWriter.toString()
-        return xmlString
+        stringWriter << markupBuilder.bind {
+            mkp.declareNamespace('': parsedXml.namespaceURI()) // Preserve namespace if any
+            mkp.yield parsedXml
+        }
+        def resultXml = stringWriter.toString().replaceAll("'", "\"")
+        return resultXml
     }
 
     static def getPermissionNode(def root) {
