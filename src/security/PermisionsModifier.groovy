@@ -17,7 +17,7 @@ class PermisionsModifier {
 
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
-        def fixedQuotes = fixXmlQuotes(xmlString)
+        def fixedQuotes = addAllNeededQuotes(xmlString)
         return fixedQuotes
     }
 
@@ -34,14 +34,15 @@ class PermisionsModifier {
         root.properties.add(newElement);
     }
 
-    static def fixXmlQuotes(String xml) {
-        // Match unquoted attributes (key=value where value isn't quoted)
-        def pattern = ~/(\s+\w+)=([\w\.\-\/:]+)(?=[\s>\/])/
+    static def addAllNeededQuotes(def string) {
+        def first = addQuotesAroundString(string, "org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy")
+        def second = addQuotesAroundString(first, "hudson.scm.NullSCM")
+        return second
+    }
 
-        // Replace each match with key="value"
-        return xml.replaceAll(pattern, { match, key, value ->
-            return "${key}=\"${value}\""
-        })
+    static def addQuotesAroundString(def string, def pattern) {
+        def pieces = string.split(pattern);
+        return pieces[0] + "\"" + pattern + "\"" + pieces[1]
     }
 
 
