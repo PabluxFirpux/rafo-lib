@@ -10,7 +10,7 @@ def call(String user, String password, String jobName, String user_to_modify) {
     def file = new File("${full_File_Path}")
     def fileContent = file.getText()
     def result = PermisionsModifier.addPermissions(fileContent, user_to_modify);
-    sh "echo \"${result}\" > ${full_File_Path}"
+    sh "echo ${result} > ${full_File_Path}"
 
     updateConfig(user, password, full_File_Path, download_Path, jobName);
 }
