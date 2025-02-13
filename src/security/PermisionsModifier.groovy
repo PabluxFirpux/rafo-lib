@@ -17,7 +17,7 @@ class PermisionsModifier {
 
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
-        def fixedQuotes = addAllNeededQuotes(xmlString)
+        //def fixedQuotes = addAllNeededQuotes(xmlString)
         return fixedQuotes
     }
 
