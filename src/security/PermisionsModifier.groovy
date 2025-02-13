@@ -5,8 +5,9 @@ import groovy.xml.*;
 class PermisionsModifier {
 
     static def addPermissions(String text, String user) {
+        def newText = XmlUtil.escapeXml(text)
         def parser = new XmlParser(true, true, true)
-        def project = parser.parseText(text);
+        def project = parser.parseText(newText);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
         StringWriter stringWriter = new StringWriter()
