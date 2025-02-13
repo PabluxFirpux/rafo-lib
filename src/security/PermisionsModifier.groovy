@@ -17,7 +17,7 @@ class PermisionsModifier {
 
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
-        return xmlString
+        return XmlUtil.serialize(project)
     }
 
     static def getPermissionNode(def root) {
