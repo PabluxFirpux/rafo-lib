@@ -12,7 +12,7 @@ class PermisionsModifier {
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
         nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.expandEmptyElements(true)
+        nodePrinter.setExpandEmptyElements(true)
         nodePrinter.setQuote("\"")
 
         nodePrinter.print(project)
