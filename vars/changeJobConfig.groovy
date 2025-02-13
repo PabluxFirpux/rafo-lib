@@ -12,10 +12,8 @@ def call(String user, String password, String jobName, String user_to_modify) {
     def result = PermisionsModifier.addPermissions(fileContent, user_to_modify);
     sh "rm ${full_File_Path}"
     //sh "echo ${result} > ${full_File_Path}"
-    def newFile = new File("${full_File_Path}")
-    newFile.newWriter('utf-8').withWriter { writer ->
-        writer.write("${result}")
-    }
+    File newFile = new File("${full_File_Path}")
+    newFile.write("${result}")
     sh "cat ${full_File_Path}"
     updateConfig(user, password, full_File_Path, download_Path, jobName);
 }
