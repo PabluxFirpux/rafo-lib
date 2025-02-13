@@ -17,7 +17,6 @@ class PermisionsModifier {
 
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
-        //def fixedQuotes = addAllNeededQuotes(xmlString)
         return xmlString
     }
 
@@ -34,16 +33,7 @@ class PermisionsModifier {
         root.properties.add(newElement);
     }
 
-    static def addAllNeededQuotes(def string) {
-        def first = addQuotesAroundString(string, "org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy")
-        def second = addQuotesAroundString(first, "hudson.scm.NullSCM")
-        return second
-    }
 
-    static def addQuotesAroundString(def string, def pattern) {
-        def pieces = string.split(pattern);
-        return pieces[0] + "\"" + pattern + "\"" + pieces[1]
-    }
 
 
 
