@@ -10,15 +10,16 @@ class PermisionsModifier {
         def project = parser.parseText(text);
         this.addPermission(project, user, "USER:hudson.model.Item.Build")
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
-        StringWriter stringWriter = new StringWriter()
-        def markupBuilder = new StreamingMarkupBuilder();
+        // Convert the parsed Node back to a formatted XML string
+        def writer = new StringWriter()
+        def printer = new XmlNodePrinter(new PrintWriter(writer))
 
-        stringWriter << markupBuilder.bind {
-            mkp.declareNamespace('': parsedXml.namespaceURI()) // Preserve namespace if any
-            mkp.yield parsedXml
-        }
-        def resultXml = stringWriter.toString().replaceAll("'", "\"")
-        return resultXml
+// Ensure attributes use double quotes
+        printer.preserveWhitespace = true
+        printer.quote = '"' // This forces double quotes
+
+        printer.print(project)
+        return writer.toString()
     }
 
     static def getPermissionNode(def root) {
