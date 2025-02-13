@@ -11,11 +11,10 @@ class PermisionsModifier {
         this.addPermission(project, user, "USER:hudson.model.Item.Read")
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.with {
-            preserveWhitespace = true
-            expandEmptyElements = true
-            quote = "\"" // Use single quote for attributes
-        }
+        nodePrinter.setPreserveWhitespace(true)
+        nodePrinter.expandEmptyElements(true)
+        nodePrinter.setQuote("\"")
+
         nodePrinter.print(project)
         String xmlString = stringWriter.toString()
         return xmlString
