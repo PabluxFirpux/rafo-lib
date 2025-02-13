@@ -16,7 +16,7 @@ def call(String user, String password, String jobName, String user_to_modify) {
     newFile.newWriter('utf-8').withWriter { writer ->
         writer.write("${result}")
     }
-
+    sh "cat ${full_File_Path}"
     updateConfig(user, password, full_File_Path, download_Path, jobName);
 }
 
