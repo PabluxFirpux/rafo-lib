@@ -1,6 +1,6 @@
 package security;
 
-enum Permission {
+public enum Permission {
     CREDENTIALS_CREATE,
     CREDENTIALS_DELETE,
     CREDENTIALS_UPDATE,
@@ -20,7 +20,7 @@ enum Permission {
     SCM_TAG
 }
 
-def getPermissionStringByEnum(Permission permission) {
+public def getPermissionStringByEnum(Permission permission) {
     switch (permission) {
         case Permission.CREDENTIALS_CREATE:
             return "USER:com.cloudbees.plugins.credentials.CredentialsProvider.Create"
