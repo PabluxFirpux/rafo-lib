@@ -67,6 +67,9 @@ class PermisionsModifier {
     static def deleteAllUser(def permissionNode, String user) {
         def nodesToRemove = []
         for (def nodes in permissionNode.children()) {
+            if (nodes.value()[0] == null) {
+                continue
+            }
             String[] value = nodes.value()[0].split(":")
             def userOfPermission = value[1]
             if (userOfPermission == user) {
