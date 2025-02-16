@@ -55,7 +55,8 @@ class PermisionsModifier {
             if (nodes.value()[0] == null) {
                 continue
             }
-            String[] value = nodes.value()[0].split(":")
+            String toSplit = nodes.value()[0]
+            String[] value = toSplit.split(":")
             if (value.length < 2) {
                 continue
             }
@@ -73,7 +74,8 @@ class PermisionsModifier {
             if (nodes.value()[0] == null) {
                 continue
             }
-            String[] value = nodes.value()[0].split(":")
+            String toSplit = nodes.value()[0]
+            String[] value = toSplit.split(":")
             if (value.length < 2) {
                 continue
             }
