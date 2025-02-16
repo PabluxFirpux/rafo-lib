@@ -1,5 +1,3 @@
-
-
 import security.*
 
 def call(String user, String password, String jobName, String user_to_modify) {
