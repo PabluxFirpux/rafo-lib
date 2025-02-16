@@ -16,6 +16,17 @@ class PermisionsModifier {
         return formatString(project)
     }
 
+    static def deleteAllUserPermissions(String text, String user) {
+        def parser = new XmlParser(true, true, true)
+        def project = parser.parseText(text);
+
+        if (isAnyUser(project, user)) {
+            deleteAllUser(project, user)
+        }
+
+        return formatString(project)
+    }
+
     static def formatString(def root) {
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
@@ -37,6 +48,31 @@ class PermisionsModifier {
         }
 
         return formatString(project)
+    }
+
+    static def isAnyUser(def permissionNode, String user) {
+        for (def nodes in permissionNode.children()) {
+            String[] value = nodes.value()[0].split(":")
+            def userOfPermission = value[1]
+            if (userOfPermission == user) {
+                return true
+            }
+        }
+        return false
+    }
+
+    static def deleteAllUser(def permissionNode, String user) {
+        def nodesToRemove = []
+        for (def nodes in permissionNode.children()) {
+            String[] value = nodes.value()[0].split(":")
+            def userOfPermission = value[1]
+            if (userOfPermission == user) {
+                nodesToRemove.add(nodes)
+            }
+        }
+        for (def node in nodesToRemove) {
+            permissionNode.remove(node)
+        }
     }
 
     static def hasPermission(def permissionNode, String tag) {
