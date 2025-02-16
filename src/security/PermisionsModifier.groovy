@@ -42,16 +42,16 @@ class PermisionsModifier {
     static def removePermissions(String text, String user, PermissionTags[] permissions) {
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
+        def permissionNode = getPermissionNode(project)
 
         for (PermissionTags permisionTag in permissions) {
-            removePermission(project, user, permisionTag)
+            removePermission(permissionNode, user, permisionTag)
         }
 
         return formatString(project)
     }
 
     static def isAnyUser(def permissionNode, String user) {
-        println("=======================================================")
         for (def nodes in permissionNode.children()) {
             println(nodes.value()[0])
             if (nodes.value()[0] == null) {
