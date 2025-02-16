@@ -61,7 +61,7 @@ class PermisionsModifier {
             if (value.length < 2) {
                 continue
             }
-            def userOfPermission = value[0]
+            def userOfPermission = value[2]
             println(userOfPermission)
             if (userOfPermission == user) {
                 return true
