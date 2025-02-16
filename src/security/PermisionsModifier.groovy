@@ -82,6 +82,7 @@ class PermisionsModifier {
             def userOfPermission = value[1]
             if (userOfPermission == user) {
                 nodesToRemove.add(nodes)
+                println(nodes.value())
             }
         }
         for (def node in nodesToRemove) {
