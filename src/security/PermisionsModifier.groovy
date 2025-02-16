@@ -28,7 +28,8 @@ class PermisionsModifier {
     static def addPermission(def root, def user, PermissionTags permission) {
         def permissionNode = getPermissionNode(root)
         def newElement = new groovy.util.Node(permissionNode, 'permission')
-        newElement.value = "${PermisionLineGenerator.getPermissionStringByEnum(permission)}:${user}";
+        def permissionString = PermisionLineGenerator.getPermissionStringByEnum(permission)
+        newElement.value = "${permissionString}:${user}";
         root.properties.add(newElement);
     }
 
