@@ -1,3 +1,5 @@
+package vars
+
 import src.security.PermisionsModifier
 
 def call(String user, String password, String jobName, String user_to_modify) {
