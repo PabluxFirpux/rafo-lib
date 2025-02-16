@@ -62,6 +62,7 @@ class PermisionsModifier {
                 continue
             }
             def userOfPermission = value[1]
+            println(userOfPermission)
             if (userOfPermission == user) {
                 return true
             }
@@ -82,7 +83,6 @@ class PermisionsModifier {
             }
             def userOfPermission = value[1]
             if (userOfPermission == user) {
-                println(nodes)
                 nodesToRemove.add(nodes)
             }
         }
