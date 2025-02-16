@@ -5,11 +5,14 @@ import security.PermissionTags;
 
 class PermisionsModifier {
 
-    static def addPermissions(String text, String user) {
+    static def addPermissions(String text, String user, PermissionTags[] permisions) {
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
-        this.addPermission(project, user, PermissionTags.JOB_BUILD)
-        this.addPermission(project, user, PermissionTags.JOB_READ)
+
+        for (PermissionTags permisionTag in permisions) {
+            addPermission(project, user, permisionTag)
+        }
+
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
         nodePrinter.setPreserveWhitespace(true)
