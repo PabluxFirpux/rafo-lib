@@ -13,13 +13,17 @@ class PermisionsModifier {
             addPermission(project, user, permisionTag)
         }
 
+        return formatString(project)
+    }
+
+    static def formatString(def root) {
         StringWriter stringWriter = new StringWriter()
         XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
         nodePrinter.setPreserveWhitespace(true)
         nodePrinter.setExpandEmptyElements(true)
         nodePrinter.setQuote("\"")
 
-        nodePrinter.print(project)
+        nodePrinter.print(root)
         String xmlString = stringWriter.toString()
         return xmlString
     }
@@ -32,16 +36,7 @@ class PermisionsModifier {
             removePermission(project, user, permisionTag)
         }
 
-
-        StringWriter stringWriter = new StringWriter()
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.setExpandEmptyElements(true)
-        nodePrinter.setQuote("\"")
-
-        nodePrinter.print(project)
-        String xmlString = stringWriter.toString()
-        return xmlString
+        return formatString(project)
     }
 
     static def hasPermission(def permissionNode, String tag) {
