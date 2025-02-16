@@ -1,7 +1,7 @@
 import security.*
 
 def call(String user, String password, String jobName, String user_to_modify, PermissionTags[] tags) {
-    def download_Path = "${JENKINS_HOME}/permisions";
+    /*def download_Path = "${JENKINS_HOME}/permisions";
     def file_Name = "output.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
 
@@ -9,6 +9,8 @@ def call(String user, String password, String jobName, String user_to_modify, Pe
 
     def file = new File("${full_File_Path}")
     def fileContent = file.getText()
+    */
+    def fileContent = getJobConfig(user, password, jobName)
     def result = PermisionsModifier.addPermissions(fileContent, user_to_modify, tags);
     sh "rm ${full_File_Path}"
     File newFile = new File("${full_File_Path}")
