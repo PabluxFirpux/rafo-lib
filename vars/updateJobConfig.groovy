@@ -3,7 +3,6 @@ def call(String user, String password, String jobName, String newFileText) {
     def file_Name = "config.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
 
-    sh "rm ${full_File_Path}"
     File newFile = new File("${full_File_Path}")
     newFile.write("${newFileText}")
     updateConfig(user, password, full_File_Path, download_Path, jobName)
