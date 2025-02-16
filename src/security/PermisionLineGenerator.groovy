@@ -1,5 +1,6 @@
+package src.security
 
-import PermissionTags;
+import src.security.PermissionTags;
 
 class PermisionLineGenerator {
 

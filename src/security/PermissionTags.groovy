@@ -1,3 +1,4 @@
+package src.security
 
 public enum PermissionTags {
     CREDENTIALS_CREATE,
