@@ -58,9 +58,6 @@ class PermisionsModifier {
             }
             String toSplit = nodes.value()[0]
             String[] value = toSplit.split(":")
-            if (value.length < 2) {
-                continue
-            }
             def userOfPermission = value[2]
             println(userOfPermission)
             if (userOfPermission == user) {
