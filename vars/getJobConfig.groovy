@@ -1,5 +1,5 @@
 def call(String user, String password, String jobName) {
-    def download_Path = "${JENKINS_HOME}/permisions";
+    def download_Path = getDownloadPath();
     def file_Name = "output.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
 
