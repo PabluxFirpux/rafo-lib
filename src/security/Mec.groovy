@@ -1,6 +1,6 @@
-package src.security
+package security
 
-import src.security.PermissionTags;
+import security.PermissionTags;
 
 PermissionTags tag = PermissionTags.JOB_BUILD;
 
