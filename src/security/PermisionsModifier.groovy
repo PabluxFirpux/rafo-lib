@@ -1,3 +1,5 @@
+package security
+
 import groovy.xml.*;
 import PermissionTags;
 

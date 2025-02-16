@@ -1,4 +1,4 @@
-import PermissionTags;
+import security.PermissionTags;
 
 PermissionTags tag = PermissionTags.JOB_BUILD;
 

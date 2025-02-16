@@ -1,3 +1,5 @@
+package security
+
 import PermissionTags;
 
 class PermisionLineGenerator {
