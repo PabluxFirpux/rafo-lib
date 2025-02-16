@@ -26,6 +26,7 @@ class PermisionsModifier {
 
     static def hasPermission(def permissionNode, String tag) {
         for (def nodes in permissionNode.children()) {
+            println(nodes.value())
             if (nodes.value() == tag) {
                 return true
             }
