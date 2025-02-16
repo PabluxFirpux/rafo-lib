@@ -15,4 +15,5 @@ def downloadFile(String user, String password, String jobName, String download_P
     sh "rm -rf ${download_Path}/*"
 
     sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${JENKINS_URL}job/${jobName}/config.xml"
+    sh "cat ${full_File_Path}"
 }
