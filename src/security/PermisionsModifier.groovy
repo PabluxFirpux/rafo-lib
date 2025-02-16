@@ -19,9 +19,10 @@ class PermisionsModifier {
     static def deleteAllUserPermissions(String text, String user) {
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
+        def permissionNode = getPermissionNode(project)
 
-        if (isAnyUser(project, user)) {
-            deleteAllUser(project, user)
+        if (isAnyUser(permissionNode, user)) {
+            deleteAllUser(permissionNode, user)
         }
 
         return formatString(project)
@@ -42,10 +43,9 @@ class PermisionsModifier {
     static def removePermissions(String text, String user, PermissionTags[] permissions) {
         def parser = new XmlParser(true, true, true)
         def project = parser.parseText(text);
-        def permissionNode = getPermissionNode(project)
 
         for (PermissionTags permisionTag in permissions) {
-            removePermission(permissionNode, user, permisionTag)
+            removePermission(project, user, permisionTag)
         }
 
         return formatString(project)
