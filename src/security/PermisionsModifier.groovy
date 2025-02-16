@@ -56,6 +56,9 @@ class PermisionsModifier {
                 continue
             }
             String[] value = nodes.value()[0].split(":")
+            if (value.length < 2) {
+                continue
+            }
             def userOfPermission = value[1]
             if (userOfPermission == user) {
                 return true
@@ -71,6 +74,9 @@ class PermisionsModifier {
                 continue
             }
             String[] value = nodes.value()[0].split(":")
+            if (value.length < 2) {
+                continue
+            }
             def userOfPermission = value[1]
             if (userOfPermission == user) {
                 nodesToRemove.add(nodes)
