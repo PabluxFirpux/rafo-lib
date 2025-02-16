@@ -51,6 +51,7 @@ class PermisionsModifier {
     }
 
     static def isAnyUser(def permissionNode, String user) {
+        println("=======================================================")
         for (def nodes in permissionNode.children()) {
             if (nodes.value()[0] == null) {
                 continue
