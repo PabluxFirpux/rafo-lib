@@ -1,6 +1,6 @@
 package vars
 
-import src.security.PermisionsModifier
+import src.security.*
 
 def call(String user, String password, String jobName, String user_to_modify) {
     def download_Path = "${JENKINS_HOME}/permisions";
