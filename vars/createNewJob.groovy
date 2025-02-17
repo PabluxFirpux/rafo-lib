@@ -7,7 +7,7 @@ def call(String user, String password, String jobName) {
     def full_File_Path = "${download_Path}/${file_Name}"
 
     File newFile = new File("${full_File_Path}")
-    def newJobText = jobConfigs.getBlankPipeline("");
+    def newJobText = jobConfigs.getBlankJob();
     newFile.write("${newJobText}")
     postConfig(user, password, full_File_Path, download_Path, jobName)
 }

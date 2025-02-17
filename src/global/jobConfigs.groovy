@@ -25,7 +25,7 @@ class jobConfigs {
                 "</project>"
     }
 
-    public static def getBlankPipeline(String script) {
+    public static def getScriptedPipeline(String script) {
         return "<flow-definition plugin=\"workflow-job\">\n" +
                 "<description/>\n" +
                 "<keepDependencies>false</keepDependencies>\n" +
