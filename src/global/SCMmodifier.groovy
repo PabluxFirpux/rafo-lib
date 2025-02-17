@@ -5,7 +5,7 @@ import global.XMLmanipulation
 
 class SCMmodifier {
     static def getSCMnode(def root) {
-        def scmNode = root.children().find{ it.name() == 'scm' }
+        def scmNode = root.children().find{ it.name() == 'definition' }
         return scmNode;
     }
 
