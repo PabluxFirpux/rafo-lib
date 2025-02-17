@@ -24,4 +24,22 @@ class jobConfigs {
                 "  <buildWrappers/>\n" +
                 "</project>"
     }
+
+    public static def getBlankPipeline(String script) {
+        return "<flow-definition plugin=\"workflow-job\">\n" +
+                "<description/>\n" +
+                "<keepDependencies>false</keepDependencies>\n" +
+                "<properties>\n" +
+                "<hudson.security.AuthorizationMatrixProperty>\n" +
+                "<inheritanceStrategy class=\"org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy\"/>\n" +
+                "</hudson.security.AuthorizationMatrixProperty>\n" +
+                "</properties>\n" +
+                "<definition class=\"org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition\" plugin=\"workflow-cps\">\n" +
+                "<script>${script}</script>\n" +
+                "<sandbox>true</sandbox>\n" +
+                "</definition>\n" +
+                "<triggers/>\n" +
+                "<disabled>false</disabled>\n" +
+                "</flow-definition>"
+    }
 }
