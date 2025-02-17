@@ -1,6 +1,6 @@
 package global
 
-import groovy.xml.XmlNodePrinter
+import groovy.xml.*
 
 class XMLmanipulation {
     public static def nodeToString(def root) {
