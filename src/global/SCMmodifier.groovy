@@ -1,6 +1,6 @@
 package global
 
-import groovy.xml.XmlParser
+import groovy.xml.*
 import global.XMLmanipulation
 
 class SCMmodifier {
