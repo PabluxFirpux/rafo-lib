@@ -2,6 +2,7 @@ package security
 
 import groovy.xml.*;
 import security.PermissionTags;
+import global.XMLmanipulation
 
 class PermisionsModifier {
 
@@ -13,7 +14,7 @@ class PermisionsModifier {
             addPermission(project, user, permisionTag)
         }
 
-        return formatString(project)
+        return XMLmanipulation.nodeToString(project)
     }
 
     static def deleteAllUserPermissions(String text, String user) {
@@ -25,19 +26,7 @@ class PermisionsModifier {
             deleteAllUser(permissionNode, user)
         }
 
-        return formatString(project)
-    }
-
-    static def formatString(def root) {
-        StringWriter stringWriter = new StringWriter()
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.setExpandEmptyElements(true)
-        nodePrinter.setQuote("\"")
-
-        nodePrinter.print(root)
-        String xmlString = stringWriter.toString()
-        return xmlString
+        return XMLmanipulation.nodeToString(project)
     }
 
     static def removePermissions(String text, String user, PermissionTags[] permissions) {
@@ -48,7 +37,7 @@ class PermisionsModifier {
             removePermission(project, user, permisionTag)
         }
 
-        return formatString(project)
+        return XMLmanipulation.nodeToString(project)
     }
 
     static def isAnyUser(def permissionNode, String user) {
