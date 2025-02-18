@@ -12,5 +12,5 @@ def call(String jobName, String newFileText) {
     def crumb = getCrumb(user, password, download_Path);
     def correctPath = URLhandler.getRegularJobString(jobName)
     def url = "${JENKINS_URL}${correctPath}/config.xml"
-    sh "curl -v -X POST --data-binary @${fullPath} -u ${user}:${password} -H 'Content-Type: application/xml'  \"${url}\" -H 'Jenkins-Crumb: ${crumb}'"
+    sh "curl -v -X POST --data-binary @${full_File_Path} -u ${user}:${password} -H 'Content-Type: application/xml'  \"${url}\" -H 'Jenkins-Crumb: ${crumb}'"
 }
