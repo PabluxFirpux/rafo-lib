@@ -1,4 +1,6 @@
-def call(String user, String password, String jobName, String newFileText) {
+def call(String jobName, String newFileText) {
+    def user = getUser()
+    def password = getPassword()
     def download_Path = getDownloadPath();
     def file_Name = "config.xml"
     def full_File_Path = "${download_Path}/${file_Name}"

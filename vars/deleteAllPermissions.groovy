@@ -1,7 +1,9 @@
 import security.PermisionsModifier
 
-def call(String user, String password, String jobName, String userToRemove) {
-    def fileContent = getJobConfig(user, password, jobName)
+def call(String jobName, String userToRemove) {
+    def user = getUser()
+    def password = getPassword()
+    def fileContent = getJobConfig(jobName)
     def result = PermisionsModifier.deleteAllUserPermissions(fileContent, userToRemove)
-    updateJobConfig(user, password, jobName, result)
+    updateJobConfig(jobName, result)
 }

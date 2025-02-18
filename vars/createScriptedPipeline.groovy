@@ -1,6 +1,8 @@
 import global.jobConfigs
 
-def call(String user, String password, String jobName, String script) {
+def call(String jobName, String script) {
+    def user = getUser()
+    def password = getPassword()
     def download_Path = getDownloadPath();
     sh "rm -rf ${download_Path}/*"
     def file_Name = "config.xml"

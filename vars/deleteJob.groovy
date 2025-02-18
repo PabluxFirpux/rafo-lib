@@ -1,4 +1,6 @@
-def call(String user, String password, String jobName) {
+def call(String jobName) {
+    def user = getUser()
+    def password = getPassword()
     def downloadPath = getDownloadPath();
     sh "rm -rf ${downloadPath}/*"
     def crumb = getCrumb(user, password, downloadPath);
