@@ -17,7 +17,7 @@ def downloadFile(String user, String password, String jobName, String download_P
     sh "mkdir -p ${download_Path}"
     sh "touch ${full_File_Path}"
     sh "rm -rf ${download_Path}/*"
-    def correctPath = URLhandler.getCreateJobString(jobName)
+    def correctPath = URLhandler.getRegularJobString(jobName)
     def url = "${JENKINS_URL}${correctPath}"
     sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${url}"
 }

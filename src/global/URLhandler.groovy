@@ -11,4 +11,13 @@ class URLhandler {
         println(result)
         return result;
     }
+
+    public static def getRegularJobString(String jobName) {
+        def result = ""
+        def path = jobName.split("/")
+        for (int i = 0; i < path.size(); i++) {
+            result += "job/${path[i]}/"
+        }
+        return result;
+    }
 }
