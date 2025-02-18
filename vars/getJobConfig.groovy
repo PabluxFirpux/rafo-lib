@@ -1,4 +1,6 @@
-def call(String user, String password, String jobName) {
+def call(String jobName) {
+    def user = getUser()
+    def password = getPassword()
     def download_Path = getDownloadPath();
     def file_Name = "output.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
@@ -15,5 +17,4 @@ def downloadFile(String user, String password, String jobName, String download_P
     sh "rm -rf ${download_Path}/*"
 
     sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${JENKINS_URL}job/${jobName}/config.xml"
-    sh "cat ${full_File_Path}"
 }

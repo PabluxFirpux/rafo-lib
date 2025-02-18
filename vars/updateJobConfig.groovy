@@ -1,4 +1,6 @@
-def call(String user, String password, String jobName, String newFileText) {
+def call(String jobName, String newFileText) {
+    def user = getUser()
+    def password = getPassword()
     def download_Path = getDownloadPath();
     def file_Name = "config.xml"
     def full_File_Path = "${download_Path}/${file_Name}"
@@ -6,17 +8,6 @@ def call(String user, String password, String jobName, String newFileText) {
     File newFile = new File("${full_File_Path}")
     newFile.write("${newFileText}")
     updateConfig(user, password, full_File_Path, download_Path, jobName)
-}
-
-
-def getCrumb(String user, String password, String downloadPath) {
-    sh "touch  ${downloadPath}/crumb.txt"
-    sh "curl -o ${downloadPath}/crumb.txt -X GET -u ${user}:${password} ${JENKINS_URL}crumbIssuer/api/xml"
-    def crumbFile = new File("${downloadPath}/crumb.txt")
-    def crumbFileCont = crumbFile.getText()
-    def parts = crumbFileCont.split("<crumb>")
-    def next = parts[1].split("</crumb>")
-    return next[0]
 }
 
 def updateConfig(String user, String password, String fullPath, String downloadPath, String jobName) {

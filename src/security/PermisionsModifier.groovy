@@ -2,6 +2,7 @@ package security
 
 import groovy.xml.*;
 import security.PermissionTags;
+import global.XMLmanipulation
 
 class PermisionsModifier {
 
@@ -13,15 +14,19 @@ class PermisionsModifier {
             addPermission(project, user, permisionTag)
         }
 
-        StringWriter stringWriter = new StringWriter()
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.setExpandEmptyElements(true)
-        nodePrinter.setQuote("\"")
+        return XMLmanipulation.nodeToString(project)
+    }
 
-        nodePrinter.print(project)
-        String xmlString = stringWriter.toString()
-        return xmlString
+    static def deleteAllUserPermissions(String text, String user) {
+        def parser = new XmlParser(true, true, true)
+        def project = parser.parseText(text);
+        def permissionNode = getPermissionNode(project)
+
+        if (isAnyUser(permissionNode, user)) {
+            deleteAllUser(permissionNode, user)
+        }
+
+        return XMLmanipulation.nodeToString(project)
     }
 
     static def removePermissions(String text, String user, PermissionTags[] permissions) {
@@ -32,16 +37,43 @@ class PermisionsModifier {
             removePermission(project, user, permisionTag)
         }
 
+        return XMLmanipulation.nodeToString(project)
+    }
 
-        StringWriter stringWriter = new StringWriter()
-        XmlNodePrinter nodePrinter = new XmlNodePrinter(new PrintWriter(stringWriter))
-        nodePrinter.setPreserveWhitespace(true)
-        nodePrinter.setExpandEmptyElements(true)
-        nodePrinter.setQuote("\"")
+    static def isAnyUser(def permissionNode, String user) {
+        for (def nodes in permissionNode.children()) {
+            if (nodes.value()[0] == null) {
+                continue
+            }
+            String toSplit = nodes.value()[0]
+            String[] value = toSplit.split(":")
+            def userOfPermission = value[2]
+            if (userOfPermission == user) {
+                return true
+            }
+        }
+        return false
+    }
 
-        nodePrinter.print(project)
-        String xmlString = stringWriter.toString()
-        return xmlString
+    static def deleteAllUser(def permissionNode, String user) {
+        def nodesToRemove = []
+        for (def nodes in permissionNode.children()) {
+            if (nodes.value()[0] == null) {
+                continue
+            }
+            String toSplit = nodes.value()[0]
+            String[] value = toSplit.split(":")
+            if (value.length < 2) {
+                continue
+            }
+            def userOfPermission = value[2]
+            if (userOfPermission == user) {
+                nodesToRemove.add(nodes)
+            }
+        }
+        for (def node in nodesToRemove) {
+            permissionNode.remove(node)
+        }
     }
 
     static def hasPermission(def permissionNode, String tag) {
