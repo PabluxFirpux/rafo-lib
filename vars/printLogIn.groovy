@@ -2,5 +2,5 @@ import security.LogIn
 
 def call() {
     //LogIn login = LogIn.getLogIn()
-    sh "echo \$USERNAME; echo \$JENINS_API_KEY"
+    sh "echo \$JENKINS_USER; echo \$JENINS_PASS"
 }
