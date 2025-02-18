@@ -1,6 +1,8 @@
 import security.LogIn
 
 def call() {
-    //LogIn login = LogIn.getLogIn()
-    sh "echo \$JENKINS_USER; echo \$JENINS_PASS"
+    def user = getUser()
+    def pass = getPassword()
+    println(user)
+    println(pass)
 }

@@ -1,7 +1,7 @@
-import security.LogIn
-
 def call(String user, String password) {
-    //LogIn.setLogIn(user, password)
-//    sh "env.JENKINS_USER = ${user}"
-  //  sh "env.JENKINS_PASS = ${password}"
+    def loginPath = getLogInPath()
+    sh "mkdir -p ${loginPath}"
+    sh "rm -rf ${loginPath}/*"
+    sh "touch ${loginPath}/user.txt"
+    sh "touch ${loginPath}/pass.txt"
 }
