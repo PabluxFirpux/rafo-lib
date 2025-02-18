@@ -1,7 +1,7 @@
 package security
 
 class LogIn {
-    private String user;
+   /* private String user;
     private String key;
     private LogIn login;
 
@@ -39,5 +39,5 @@ class LogIn {
         LogIn logIn = getLogIn();
         logIn.setUser(user)
         logIn.setPassword(key)
-    }
+    }*/
 }
