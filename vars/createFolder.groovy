@@ -10,7 +10,9 @@ def call(String jobName) {
     def full_File_Path = "${download_Path}/${file_Name}"
 
     File newFile = new File("${full_File_Path}")
-    def newJobText = jobConfigs.getFolder(jobName);
+    def jobNameParts = jobName.split("/")
+    def trimmedJobName = jobNameParts[jobNameParts.size()-1]
+    def newJobText = jobConfigs.getFolder(trimmedJobName);
     newFile.write("${newJobText}")
     postConfig(user, password, full_File_Path, download_Path, jobName)
 }
