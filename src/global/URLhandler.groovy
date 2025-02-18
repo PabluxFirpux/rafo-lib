@@ -5,7 +5,7 @@ class URLhandler {
         println(jobName)
         def result = ""
         def path = jobName.split(".")
-        println(path.length)
+        println(path[0])
         for (int i = 0; i < path.length-1; i++) {
             result += "job/${path[i]}/"
         }
