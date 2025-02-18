@@ -42,4 +42,64 @@ class jobConfigs {
                 "<disabled>false</disabled>\n" +
                 "</flow-definition>"
     }
+
+    public static def getFolder(String folderName) {
+        return "<com.cloudbees.hudson.plugins.folder.Folder plugin=\"cloudbees-folder\">\n" +
+                "<description>description</description>\n" +
+                "<displayName>${folderName}</displayName>\n" +
+                "<properties>\n" +
+                "<com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>\n" +
+                "<inheritanceStrategy class=\"org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy\"/>\n" +
+                "</com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>\n" +
+                "<org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin=\"docker-workflow\">\n" +
+                "<dockerLabel/>\n" +
+                "<registry plugin=\"docker-commons\"/>\n" +
+                "</org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig>\n" +
+                "</properties>\n" +
+                "<folderViews class=\"com.cloudbees.hudson.plugins.folder.views.DefaultFolderViewHolder\">\n" +
+                "<views>\n" +
+                "<hudson.model.AllView>\n" +
+                "<owner class=\"com.cloudbees.hudson.plugins.folder.Folder\" reference=\"../../../..\"/>\n" +
+                "<name>All</name>\n" +
+                "<filterExecutors>false</filterExecutors>\n" +
+                "<filterQueue>false</filterQueue>\n" +
+                "<properties class=\"hudson.model.View\$PropertyList\"/>\n" +
+                "</hudson.model.AllView>\n" +
+                "</views>\n" +
+                "<tabBar class=\"hudson.views.DefaultViewsTabBar\"/>\n" +
+                "</folderViews>\n" +
+                "<healthMetrics/>\n" +
+                "<icon class=\"com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon\"/>\n" +
+                "</com.cloudbees.hudson.plugins.folder.Folder>"
+    }
+
+    public static def getFolder(String folderName, String description) {
+        return "<com.cloudbees.hudson.plugins.folder.Folder plugin=\"cloudbees-folder\">\n" +
+                "<description>${description}</description>\n" +
+                "<displayName>${folderName}</displayName>\n" +
+                "<properties>\n" +
+                "<com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>\n" +
+                "<inheritanceStrategy class=\"org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy\"/>\n" +
+                "</com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty>\n" +
+                "<org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin=\"docker-workflow\">\n" +
+                "<dockerLabel/>\n" +
+                "<registry plugin=\"docker-commons\"/>\n" +
+                "</org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig>\n" +
+                "</properties>\n" +
+                "<folderViews class=\"com.cloudbees.hudson.plugins.folder.views.DefaultFolderViewHolder\">\n" +
+                "<views>\n" +
+                "<hudson.model.AllView>\n" +
+                "<owner class=\"com.cloudbees.hudson.plugins.folder.Folder\" reference=\"../../../..\"/>\n" +
+                "<name>All</name>\n" +
+                "<filterExecutors>false</filterExecutors>\n" +
+                "<filterQueue>false</filterQueue>\n" +
+                "<properties class=\"hudson.model.View\$PropertyList\"/>\n" +
+                "</hudson.model.AllView>\n" +
+                "</views>\n" +
+                "<tabBar class=\"hudson.views.DefaultViewsTabBar\"/>\n" +
+                "</folderViews>\n" +
+                "<healthMetrics/>\n" +
+                "<icon class=\"com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon\"/>\n" +
+                "</com.cloudbees.hudson.plugins.folder.Folder>"
+    }
 }
