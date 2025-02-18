@@ -1,3 +1,5 @@
+import global.URLhandler
+
 def call(String jobName, String newFileText) {
     def user = getUser()
     def password = getPassword()
@@ -7,5 +9,8 @@ def call(String jobName, String newFileText) {
 
     File newFile = new File("${full_File_Path}")
     newFile.write("${newFileText}")
-    postConfig(user, password, full_File_Path, download_Path, jobName)
+    def crumb = getCrumb(user, password, download_Path);
+    def correctPath = URLhandler.getRegularJobString(jobName)
+    def url = "${JENKINS_URL}${correctPath}/config.xml"
+    sh "curl -v -X POST --data-binary @${fullPath} -u ${user}:${password} -H 'Content-Type: application/xml'  \"${url}\" -H 'Jenkins-Crumb: ${crumb}'"
 }
