@@ -103,6 +103,9 @@ class PermisionsModifier {
     static def getPermissionNode(def root) {
         def parentNode = root.children().find{ it.name() == 'properties' }
         def permissionNode = parentNode.children().find{it.name() == 'hudson.security.AuthorizationMatrixProperty'}
+        if (permissionNode == null) {
+            permissionNode = parentNode.children().find{it.name() == 'com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty'}
+        }
         return permissionNode;
     }
 
