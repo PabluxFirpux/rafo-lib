@@ -7,8 +7,8 @@ def call(String jobName) {
     def responseXML;
     try {
         responseXML = parser.parseText(response);
-        println(true)
+        return true
     } catch (Exception e) {
-        println(false)
+        return false
     }
 }
