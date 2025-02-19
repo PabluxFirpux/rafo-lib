@@ -1,4 +1,4 @@
-import groovy.xml.XmlParser
+import groovy.xml.*
 
 def call(String jobName) {
     if (!jobExists(jobName)) return false
