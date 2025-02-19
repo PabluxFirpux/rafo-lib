@@ -1,5 +1,5 @@
 import global.XMLmanipulation
-import groovy.xml.XmlParser
+import groovy.xml.*
 
 def call(String jobName) {
     def response = getJobConfig(jobName)
