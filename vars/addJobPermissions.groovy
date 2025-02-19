@@ -5,7 +5,6 @@ def call(String jobName, String user_to_modify, PermissionTags[] tags) {
     def password = getPassword()
     def fileContent = getJobConfig(jobName)
     def result = PermisionsModifier.addPermissions(fileContent, user_to_modify, tags);
-    println(result)
 
     updateJobConfig(jobName, result)
 }
