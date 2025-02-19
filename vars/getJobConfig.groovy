@@ -18,6 +18,6 @@ def downloadFile(String user, String password, String jobName, String download_P
     sh "touch ${full_File_Path}"
     sh "rm -rf ${download_Path}/*"
     def correctPath = URLhandler.getRegularJobString(jobName)
-    def url = "${JENKINS_URL}${correctPath}/config.xml"
+    def url = "${JENKINS_URL}${correctPath}config.xml"
     sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${url}"
 }
