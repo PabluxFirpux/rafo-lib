@@ -1,4 +1,4 @@
 def call(String jobName) {
-    def expected = "com.cloudbees.hudson.plugins.folder.Folder"
+    def expected = "flow-definition"
     return jobIsSomething(jobName, expected)
 }
