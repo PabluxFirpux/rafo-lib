@@ -1,6 +1,6 @@
 import security.PermissionTags
 
 def call(String jobName, String user) {
-    PermissionTags[] allTags = [PermissionTags.enumConstants]
+    PermissionTags[] allTags = PermissionTags.values()
     println(allTags)
 }
