@@ -1,5 +1,5 @@
-def call(String jobName) {
+def call(String jobName, String script) {
     createFolder(jobName)
     deleteJob(jobName)
-    createScriptedPipeline(jobName, "")
+    createScriptedPipeline(jobName, script)
 }
