@@ -41,6 +41,9 @@ class PermisionsModifier {
     }
 
     static def isAnyUser(def permissionNode, String user) {
+        if (permissionNode.children() == null) {
+            return false
+        }
         for (def nodes in permissionNode.children()) {
             if (nodes.value()[0] == null) {
                 continue
@@ -77,6 +80,9 @@ class PermisionsModifier {
     }
 
     static def hasPermission(def permissionNode, String tag) {
+        if (permissionNode.children() == null) {
+            return false
+        }
         for (def nodes in permissionNode.children()) {
             if (nodes.value()[0] == tag) {
                 return true
@@ -97,6 +103,9 @@ class PermisionsModifier {
     static def getPermissionNode(def root) {
         def parentNode = root.children().find{ it.name() == 'properties' }
         def permissionNode = parentNode.children().find{it.name() == 'hudson.security.AuthorizationMatrixProperty'}
+        if (permissionNode == null) {
+            permissionNode = parentNode.children().find{it.name() == 'com.cloudbees.hudson.plugins.folder.properties.AuthorizationMatrixProperty'}
+        }
         return permissionNode;
     }
 

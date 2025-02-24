@@ -1,3 +1,5 @@
+import global.URLhandler
+
 def call(String jobName) {
     def user = getUser()
     def password = getPassword()
@@ -15,6 +17,7 @@ def downloadFile(String user, String password, String jobName, String download_P
     sh "mkdir -p ${download_Path}"
     sh "touch ${full_File_Path}"
     sh "rm -rf ${download_Path}/*"
-
-    sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${JENKINS_URL}job/${jobName}/config.xml"
+    def correctPath = URLhandler.getRegularJobString(jobName)
+    def url = "${JENKINS_URL}${correctPath}config.xml"
+    sh "curl -o ${full_File_Path} -X GET -u ${user}:${password} ${url}"
 }
