@@ -11,8 +11,14 @@ def call(String jobName) {
 
     File newFile = new File("${full_File_Path}")
     def jobNameParts = jobName.split("/")
-    def trimmedJobName = jobNameParts[jobNameParts.size()-1]
-    def newJobText = jobConfigs.getFolder(trimmedJobName);
-    newFile.write("${newJobText}")
-    postConfig(user, password, full_File_Path, download_Path, jobName)
+    String nameSoFar = ""
+    for (int i = 0; i < jobNameParts.size(); i++) {
+        nameSoFar += jobNameParts[i] + "/"
+        sh "rm -rf ${download_Path}/*"
+        newFile = new File("${full_File_Path}")
+        def trimmedJobName = jobNameParts[i]
+        def newJobText = jobConfigs.getFolder(trimmedJobName);
+        newFile.write("${newJobText}")
+        postConfig(user, password, full_File_Path, download_Path, nameSoFar)
+    }
 }
