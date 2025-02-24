@@ -13,7 +13,7 @@ def call(String jobName) {
     def jobNameParts = jobName.split("/")
     String nameSoFar = ""
     for (int i = 0; i < jobNameParts.size(); i++) {
-        nameSoFar += jobNameParts[i]
+        nameSoFar += jobNameParts[i] + "/"
         sh "rm -rf ${download_Path}/*"
         newFile = new File("${full_File_Path}")
         def trimmedJobName = jobNameParts[i]
