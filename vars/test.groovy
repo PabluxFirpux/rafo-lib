@@ -12,7 +12,8 @@ def call() {
     def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
 
     def username = "euler"
-    def userEntry = ldap.exists("uid=${username},ou=mathematicians,dc=example,dc=com")
+    def userPassword = "password"
+    def userEntry = ldap.exists("uid=${username}")
     println(userEntry)
     if (userEntry) {
         println("YYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH")
@@ -27,5 +28,5 @@ def call() {
     } else {
         println "User not found: ${username}"
     }
-    ldap.close()
+    //ldap.close()
 }
