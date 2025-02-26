@@ -6,7 +6,7 @@ import org.xbib.groovy.ldap.SearchScope
 
 def call() {
     def ldapUrl = 'ldap://ldap.forumsys.com'
-    def bindDN = 'dc=example,dc=com'
+    def bindDN = 'cn=read-only-admin,dc=example,dc'
     def bindPassword = 'password'
 
     def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
