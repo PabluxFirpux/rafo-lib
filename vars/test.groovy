@@ -1,5 +1,6 @@
-@Grab(group='org.apache.directory.groovyldap', module='groovy-ldap')
-import org.apache.directory.groovyldap.LDAP;
+@GrabResolver(name='xbib-releases', root='https://repo1.maven.org/maven2/')
+@Grab(group='org.xbib.groovy', module='groovy-ldap', version='1.0.2')
+import org.xbib.groovy.groovyldap.*;
 import org.apache.directory.groovyldap.SearchScope;
 
 def call() {
