@@ -12,9 +12,10 @@ def call() {
     def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
 
     def username = "euler"
-    def userEntry = ldap.searchUnique("uid=${username},ou=mathematicians,dc=example,dc=com")
-
+    def userEntry = ldap.exists("uid=${username},ou=mathematicians,dc=example,dc=com")
+    println(userEntry)
     if (userEntry) {
+        println("YYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH")
         try {
             // Attempt to bind using the user's DN and password
             def userLdap = LDAP.newInstance(ldapUrl, userEntry.dn, "password")
