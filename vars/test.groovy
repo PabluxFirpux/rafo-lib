@@ -1,4 +1,4 @@
-@Grab(group='org.apache.directory.groovyldap', module='groovy-ldap', version='0.9.0-incubating')
+@Grab(group='org.apache.directory.groovyldap', module='groovy-ldap')
 import org.apache.directory.groovyldap.LDAP;
 import org.apache.directory.groovyldap.SearchScope;
 
