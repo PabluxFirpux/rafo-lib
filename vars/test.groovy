@@ -13,7 +13,7 @@ def call() {
 
     def username = "euler"
     def userPassword = "password"
-    def userEntry = ldap.exists("uid=${username}")
+    def userEntry = ldap.exists("uid=${username},ou=mathematicians,dc=example,dc=com")
     println(userEntry)
     if (userEntry) {
         println("YYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH")
