@@ -1,6 +1,6 @@
 @GrabResolver(name='xbib-releases', root='https://repo1.maven.org/maven2/')
 @Grab(group='org.xbib.groovy', module='groovy-ldap', version='1.0.2')
-import org.xbib.groovy.ldap.LDAP
+import org.xbib.groovy.ldap.LDAP;
 import org.xbib.groovy.ldap.SearchScope
 
 
@@ -11,8 +11,8 @@ def call() {
 
     def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
 
-    ldap.eachEntry('(objectClass=person)') { entry ->
-        println "User found: ${entry.cn} - ${entry.displayName}"
+    for (def thing in ldap) {
+        println(thing)
     }
 
     ldap.close()
