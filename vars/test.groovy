@@ -9,7 +9,7 @@ def call() {
     def bindDN = 'dc=example,dc=com'
     def bindPassword = 'password'
 
-    def ldap = LDAP.newInstance(ldapUrl, bindDN)
+    def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
 
     def username = "euler"
     def userPassword = "password"
