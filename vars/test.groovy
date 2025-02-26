@@ -11,8 +11,8 @@ def call() {
 
     def ldap = LDAP.newInstance(ldapUrl, bindDN, bindPassword)
 
-    for (def thing in ldap) {
-        println(thing)
+    ldap.eachEntry('dc=example,dc=com', '(objectClass=person)', SearchScope.SUB) { entry ->
+        println "Found entry: ${entry.dn}"
     }
 
     ldap.close()
